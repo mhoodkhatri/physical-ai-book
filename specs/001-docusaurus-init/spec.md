@@ -10,6 +10,10 @@
 ### Session 2026-01-18
 
 - Q: What GitHub Pages URL and repository configuration should be used for deployment? → A: `hood.github.io/physical-ai-book` (organization: hood, project: physical-ai-book)
+- Q: Should the spec explicitly mandate RTX 4070 Ti+ (workstation) and Jetson Orin Nano (edge) as specific hardware requirements? → A: Yes, add explicit RTX 4070 Ti+ and Jetson Orin Nano requirements to hardware pages
+- Q: What deployment mechanism should be configured for GitHub Pages? → A: GitHub Actions CI/CD (auto-deploy on push to main)
+- Q: What format should the MDX component placeholders use? → A: MDX JSX comments: `{/* <Personalize /> */}` and `{/* <UrduTranslation /> */}`
+- Q: What level of RTL CSS variable support should be included? → A: Minimal set: `--ifm-direction`, `--ifm-text-align`, `--ifm-font-family-rtl` (extensible later)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -54,7 +58,7 @@ A content author adding new material to the textbook finds placeholder MDX compo
 
 **Acceptance Scenarios**:
 
-1. **Given** a content author opens any generated `.md` file in the docs folder, **When** they view the file header, **Then** they see placeholder comments for `<Personalize />` and `<UrduTranslation />` MDX components
+1. **Given** a content author opens any generated `.md` file in the docs folder, **When** they view the file header, **Then** they see MDX JSX comment placeholders `{/* <Personalize /> */}` and `{/* <UrduTranslation /> */}`
 2. **Given** the site is built, **When** Docusaurus processes the markdown files, **Then** the build succeeds without errors (placeholders are valid comments)
 
 ---
@@ -89,10 +93,11 @@ A developer implementing Urdu translation finds CSS custom properties already co
 - **FR-004**: System MUST create a `/docs` folder structure matching the 4-module architecture defined in the constitution
 - **FR-005**: System MUST generate a `sidebars.js` file reflecting the complete module hierarchy
 - **FR-006**: System MUST create placeholder markdown files for all modules and their sub-topics
-- **FR-007**: Each generated markdown file MUST include placeholder comments for Personalize and Urdu Translation MDX components at the top
+- **FR-007**: Each generated markdown file MUST include MDX JSX comment placeholders at the top: `{/* <Personalize /> */}` and `{/* <UrduTranslation /> */}`
 - **FR-008**: System MUST create `index.md` files for each module folder with summary content
-- **FR-009**: System MUST add custom CSS with RTL support variables
-- **FR-010**: System MUST include Hardware Specifications section with "Digital Twin Workstation" and "Physical AI Edge Kit" sub-pages
+- **FR-009**: System MUST add custom CSS with RTL support variables: `--ifm-direction: ltr`, `--ifm-text-align: left`, `--ifm-font-family-rtl` (for Urdu/Arabic fonts)
+- **FR-010**: System MUST include Hardware Specifications section with "Digital Twin Workstation" (RTX 4070 Ti+ GPU, 32GB RAM minimum) and "Physical AI Edge Kit" (Jetson Orin Nano) sub-pages with explicit hardware requirements documented
+- **FR-011**: System MUST include a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys to GitHub Pages on push to main branch
 
 ### Directory Structure Requirements
 
@@ -138,7 +143,7 @@ docs/
 
 - **Module**: A major section of the textbook covering a unified topic area (ROS 2, Simulation, NVIDIA Isaac, VLA)
 - **Topic Page**: An individual learning unit within a module covering a specific concept
-- **Hardware Specification**: Documentation of required hardware for the course
+- **Hardware Specification**: Documentation of required hardware for the course: "Digital Twin Workstation" requires RTX 4070 Ti+ GPU (16GB VRAM), 32GB RAM, CUDA 12.x; "Physical AI Edge Kit" requires Jetson Orin Nano Developer Kit
 - **MDX Component Placeholder**: A comment marker indicating where future interactive components will be inserted
 
 ## Assumptions
@@ -166,5 +171,6 @@ docs/
 - **SC-003**: The sidebar displays all 4 modules with correct hierarchy and all sub-topics expandable
 - **SC-004**: All 25+ placeholder markdown files are created and accessible via navigation
 - **SC-005**: Every generated markdown file contains the MDX component placeholder comments
-- **SC-006**: Custom CSS file contains RTL support variables
+- **SC-006**: Custom CSS file contains RTL support variables (`--ifm-direction`, `--ifm-text-align`, `--ifm-font-family-rtl`)
 - **SC-007**: The `docusaurus.config.js` contains correct title ("Physical AI & Humanoid Robotics"), organization ("Panaversity"), and GitHub Pages configuration (url: `https://hood.github.io`, baseUrl: `/physical-ai-book/`, organizationName: `hood`, projectName: `physical-ai-book`)
+- **SC-008**: A GitHub Actions workflow exists at `.github/workflows/deploy.yml` that triggers on push to main and deploys to GitHub Pages

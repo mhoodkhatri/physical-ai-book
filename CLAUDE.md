@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Node.js 18+ (LTS), JavaScript/TypeScript for config files + Docusaurus 3.x (@docusaurus/preset-classic), React 18.x (001-docusaurus-init)
+- N/A (static site generator) (001-docusaurus-init)
+
+## Recent Changes
+- 001-docusaurus-init: Added Node.js 18+ (LTS), JavaScript/TypeScript for config files + Docusaurus 3.x (@docusaurus/preset-classic), React 18.x
