@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m \"$\\(cat <<''EOF''\ndocs: ratify constitution v1.0.0 for Physical AI & Humanoid Robotics Textbook\n\nEstablish foundational governance for the Panaversity hackathon project:\n\n- Define 7 core principles \\(Docusaurus-first, SDD, RAG-first, Modular Content,\n  Code-Content Parity, Accessibility-First, Security\\)\n- Mandate technical stack \\(FastAPI, Neon Postgres, Qdrant, Better-Auth\\)\n- Document 4-module content architecture with file structure\n- Specify bonus feature requirements \\(personalization, translation, subagents\\)\n- Add governance rules, amendment process, and ADR triggers\n- Create PHR for constitution command\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git fetch:*)",
+      "Bash(git --version)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(claude mcp remove:*)",
+      "Bash(claude mcp add:*)",
+      "mcp__context7__query-docs",
+      "Bash(git rev-parse:*)"
+    ]
+  }
+}
